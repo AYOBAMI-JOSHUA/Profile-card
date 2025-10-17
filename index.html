@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile Card</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <article data-testid="test-profile-card" class="profile-card">
+      <header>
+        <h2 data-testid="test-user-name" aria-label="User Name">Joshua Akodu Ayobami</h2>
+      </header>
+
+      <figure class="avatar-container">
+        <img
+          src="https://raw.githubusercontent.com/AYOBAMI-JOSHUA/JoshuaAyobami/refs/heads/main/public/image/avatar.png"
+          alt="Joshua in cooperate"
+          data-testid="test-user-avatar"
+        />
+        <figcaption>Frontend Developer</figcaption>
+      </figure>
+
+      <p data-testid="test-user-bio">
+        Hi, I'm a Passionate Frontend developer. 
+        with 1+ year of experience using React, JavaScript, HTML5, and TailwindCSS and other 
+        frameworks to build all aspects of the user experience and user interface for 
+        client-facing landing pages.
+      </p>
+
+      <p>
+        Current time (ms):
+        <span data-testid="test-user-time" id="user-time"></span>
+      </p>
+
+      <section class="lists-container">
+        <section data-testid="test-user-hobbies" class="list hobbies">
+          <h3>Hobbies</h3>
+          <ul>
+            <li>Coding</li>
+            <li>Music</li>
+            <li>Gaming</li>
+            <li>Reading</li>
+            <li>Singing</li>
+          </ul>
+        </section>
+
+        <section data-testid="test-user-dislikes" class="list dislikes">
+          <h3>Dislikes</h3>
+          <ul>
+            <li>Slow Internet</li>
+            <li>Messy code</li>
+            <li>Bad UX</li>
+            <li>Bad Communication</li>
+          </ul>
+        </section>
+      </section>
+
+      <nav
+        data-testid="test-user-social-links"
+        aria-label="Social Links"
+        class="bottom-nav"
+      >
+        <ul>
+          <li>
+            <a
+              href="https://x.com/Your_fav_Tecbro"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-testid="test-user-social-twitter"
+              >Twitter</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.linkedin.com/in/joshua-ayobami-203066275/"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-testid="test-user-social-linkedin"
+              >LinkedIn</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://github.com/AYOBAMI-JOSHUA"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-testid="test-user-social-github"
+              >GitHub</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </article>
+
+    <script src="script.js"></script>
+  </body>
+</html>
