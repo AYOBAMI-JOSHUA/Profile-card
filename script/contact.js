@@ -1,107 +1,52 @@
-// contact.js - client-side validation and success handling
+const form = document.getElementById("contactForm");
 
-(function () {
-  const form = document.getElementById("contact-form");
-  const nameEl = document.getElementById("name");
-  const emailEl = document.getElementById("email");
-  const subjectEl = document.getElementById("subject");
-  const messageEl = document.getElementById("message");
+const nameInput = document.getElementById("name");
+const emailInput = document.getElementById("email");
+const subjectInput = document.getElementById("subject");
+const messageInput = document.getElementById("message");
 
-  const errorName = document.getElementById("error-name");
-  const errorEmail = document.getElementById("error-email");
-  const errorSubject = document.getElementById("error-subject");
-  const errorMessage = document.getElementById("error-message");
+const successMsg = document.getElementById("success");
 
-  const successBox = document.getElementById("form-success");
+const errors = {
+  name: document.getElementById("error-name"),
+  email: document.getElementById("error-email"),
+  subject: document.getElementById("error-subject"),
+  message: document.getElementById("error-message"),
+};
 
-  // simple email regex (reasonable for validation)
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+  let isValid = true;
 
-  function clearErrors() {
-    errorName.textContent = "";
-    errorEmail.textContent = "";
-    errorSubject.textContent = "";
-    errorMessage.textContent = "";
+  Object.values(errors).forEach((err) => (err.textContent = ""));
+  successMsg.textContent = "";
+
+  if (nameInput.value.trim() === "") {
+    errors.name.textContent = "Full name is required";
+    isValid = false;
   }
 
-  function validate() {
-    let valid = true;
-    clearErrors();
-
-    if (!nameEl.value.trim()) {
-      errorName.textContent = "Full name is required.";
-      nameEl.setAttribute("aria-invalid", "true");
-      valid = false;
-    } else {
-      nameEl.removeAttribute("aria-invalid");
-    }
-
-    if (!emailEl.value.trim()) {
-      errorEmail.textContent = "Email is required.";
-      emailEl.setAttribute("aria-invalid", "true");
-      valid = false;
-    } else if (!emailRegex.test(emailEl.value.trim())) {
-      errorEmail.textContent = "Please enter a valid email (name@example.com).";
-      emailEl.setAttribute("aria-invalid", "true");
-      valid = false;
-    } else {
-      emailEl.removeAttribute("aria-invalid");
-    }
-
-    if (!subjectEl.value.trim()) {
-      errorSubject.textContent = "Subject is required.";
-      subjectEl.setAttribute("aria-invalid", "true");
-      valid = false;
-    } else {
-      subjectEl.removeAttribute("aria-invalid");
-    }
-
-    if (!messageEl.value.trim()) {
-      errorMessage.textContent = "Message is required.";
-      messageEl.setAttribute("aria-invalid", "true");
-      valid = false;
-    } else if (messageEl.value.trim().length < 10) {
-      errorMessage.textContent = "Message must be at least 10 characters.";
-      messageEl.setAttribute("aria-invalid", "true");
-      valid = false;
-    } else {
-      messageEl.removeAttribute("aria-invalid");
-    }
-
-    return valid;
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (emailInput.value.trim() === "") {
+    errors.email.textContent = "Email is required";
+    isValid = false;
+  } else if (!emailPattern.test(emailInput.value)) {
+    errors.email.textContent = "Enter a valid email address";
+    isValid = false;
   }
 
-  // clear individual error when user types
-  [nameEl, emailEl, subjectEl, messageEl].forEach((el) => {
-    el.addEventListener("input", () => {
-      const id = el.id;
-      const err = document.getElementById("error-" + id);
-      if (err) err.textContent = "";
-      el.removeAttribute("aria-invalid");
-      successBox.hidden = true;
-    });
-  });
+  if (subjectInput.value.trim() === "") {
+    errors.subject.textContent = "Subject is required";
+    isValid = false;
+  }
 
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    // hide previous success
-    successBox.hidden = true;
+  if (messageInput.value.trim().length < 10) {
+    errors.message.textContent = "Message must be at least 10 characters";
+    isValid = false;
+  }
 
-    const ok = validate();
-
-    if (!ok) {
-      // focus first invalid field
-      const firstInvalid = form.querySelector("[aria-invalid='true']");
-      if (firstInvalid) firstInvalid.focus();
-      return;
-    }
-
-    // --- Simulate successful submission (you can replace with fetch) ---
-    successBox.hidden = false;
-    // Optionally reset form (keep commented if you want to preserve values)
+  if (isValid) {
+    successMsg.textContent = "✅ Your message has been sent successfully!";
     form.reset();
-
-    // move focus to success message for screen readers
-    successBox.focus?.();
-  });
-})();
+  }
+});

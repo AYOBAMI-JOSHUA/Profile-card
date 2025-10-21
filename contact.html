@@ -1,105 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Contact</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Me</title>
   <link rel="stylesheet" href="styles/contact.css" />
 </head>
+
 <body>
-  <main class="page" id="main-content">
-        <header class="page-header">
-            <h1 class="page-title">Let's connect</h1>
-            <p class="page-sub">Do you have a project, feedback or just want to say hi? Drop a message below.</p>
-        </header>
+    <main class="container" data-testid="test-contact-page">
+        <h1>Contact Me</h1>
 
-        <section class="contact-section">
-        <form id="contact-form" novalidate aria-labelledby="contact-heading" class="contact-form">
-            <h2 id="contact-heading" class="sr-only">Contact form</h2>
-
-            <!-- Full Name -->
-            <div class="form-row">
-                <label for="name">Full name</label>
-                <input
-                    id="name"
-                    name="name"
-                    type="text"
-                    placeholder="Your full name"
-                    data-testid="test-contact-name"
-                    aria-describedby="error-name"
-                    required
-                />
-                <div id="error-name" class="error-msg" data-testid="test-contact-error-name" aria-live="polite"></div>
+        <form id="contactForm" novalidate>
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input id="name" data-testid="test-contact-name" type="text" aria-describedby="error-name" />
+                <small id="error-name" data-testid="test-contact-error-name" class="error"></small>
             </div>
 
-            <!-- Email -->
-            <div class="form-row">
-            <label for="email">Email</label>
-            <input
-                id="email"
-                name="email"
-                type="email"
-                placeholder="name@example.com"
-                data-testid="test-contact-email"
-                aria-describedby="error-email"
-                required
-            />
-            <div id="error-email" class="error-msg" data-testid="test-contact-error-email" aria-live="polite"></div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input id="email" data-testid="test-contact-email" type="email" aria-describedby="error-email" />
+                <small id="error-email" data-testid="test-contact-error-email" class="error"></small>
             </div>
 
-            <!-- Subject -->
-            <div class="form-row">
-            <label for="subject">Subject</label>
-            <input
-                id="subject"
-                name="subject"
-                type="text"
-                placeholder="What is this about?"
-                data-testid="test-contact-subject"
-                aria-describedby="error-subject"
-                required
-            />
-            <div id="error-subject" class="error-msg" data-testid="test-contact-error-subject" aria-live="polite"></div>
+            <div class="form-group">
+                <label for="subject">Subject</label>
+                <input id="subject" data-testid="test-contact-subject" type="text" aria-describedby="error-subject" />
+                <small id="error-subject" data-testid="test-contact-error-subject" class="error"></small>
             </div>
 
-            <!-- Message -->
-            <div class="form-row">
-            <label for="message">Message</label>
-            <textarea
-                id="message"
-                name="message"
-                rows="6"
-                placeholder="Write your message (at least 10 characters)"
-                data-testid="test-contact-message"
-                aria-describedby="error-message"
-                required
-            ></textarea>
-            <div id="error-message" class="error-msg" data-testid="test-contact-error-message" aria-live="polite"></div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" data-testid="test-contact-message" rows="4" aria-describedby="error-message"></textarea>
+                <small id="error-message" data-testid="test-contact-error-message" class="error"></small>
             </div>
 
-            <!-- Submit -->
-            <div class="form-row form-actions">
-            <button type="submit" id="submit-btn" data-testid="test-contact-submit" class="btn-submit">
-                Send message
-            </button>
-            </div>
+            <button data-testid="test-contact-submit" type="submit">Send Message</button>
 
-            <!-- Success message (alert box style) -->
-            <div id="form-success" class="success-box" data-testid="test-contact-success" role="status" aria-live="polite" hidden>
-            <strong>✅ Message sent successfully!</strong>
-            <p>Thank you for reaching out — I’ll get back to you shortly.</p>
-            </div>
+            <p id="success" data-testid="test-contact-success" class="success"></p>
         </form>
-        </section>
+        <div class="nav-buttons">
+            <a href="about.html" class="about-btn" data-testid="test-go-to-about">
+                About me
+            </a>
+        </div>
 
-        <!-- Social links (kept simple, below form) -->
-        <aside class="socials" aria-label="Social links">
-        <a href="https://github.com/AYOBAMI-JOSHUA" target="_blank" rel="noopener noreferrer" class="social" aria-label="GitHub">GitHub</a>
-        <a href="https://x.com/your_fav_tecbro?s=21" target="_blank" rel="noopener noreferrer" class="social" aria-label="X Twitter">X</a>
-        <a href="https://www.linkedin.com/in/joshua-ayobami-203066275/" target="_blank" rel="noopener noreferrer" class="social" aria-label="LinkedIn">LinkedIn</a>
-        </aside>
-  </main>
+    </main>
 
-  <script src="contact.js"></script>
+    <script src="script/contact.js"></script>
 </body>
 </html>
